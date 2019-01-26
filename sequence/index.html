@@ -1,0 +1,47 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Sequence</title>
+    <style>
+      .sequence {
+        background: #f0f0f0;
+        border: 2px solid #ccc;
+        padding: 5px;
+        width: 210px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sequence">
+      <input class="sequence-input" type="text" />
+      <button class="find-btn" title="Find the amount of repetitions x&y">
+        Find
+      </button>
+      <div class="result">Provide a srting please</div>
+    </div>
+    <script>
+      (function() {
+        const input = document.querySelector(".sequence-input");
+        const button = document.querySelector(".find-btn");
+        const resultField = document.querySelector(".result");
+
+        function showSequenceAmount() {
+          const text = input.value;
+          const reg = /(xy)+/i;
+          const result = text.match(reg);
+
+          if (!result) {
+            resultField.textContent = "There was not found the x&y sequence";
+          } else {
+            const sequenceAmount = result[0].length / 2;
+            resultField.textContent = `The x&y sequence was found ${sequenceAmount} times in a row`;
+          }
+        }
+
+        button.addEventListener("click", showSequenceAmount);
+      })();
+    </script>
+  </body>
+</html>

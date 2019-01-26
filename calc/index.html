@@ -1,0 +1,78 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Calc</title>
+    <style>
+      .calc {
+        background: #f0f0f0;
+        border: 2px solid #ccc;
+        padding: 5px;
+        width: 200px;
+      }
+
+      .calc-input {
+        width: 100%;
+        margin-bottom: 5px;
+      }
+
+      .result {
+        margin-bottom: 5px;
+      }
+
+      .btn-container {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .calc-btn {
+        flex-basis: 30%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calc">
+      <input class="calc-input" type="number" />
+      <div class="result">Provide a number please</div>
+      <div class="btn-container">
+        <button class="calc-btn" data-operation="sqr">sqr</button>
+        <button class="calc-btn" data-operation="sqrt">sqrt</button>
+        <button class="calc-btn" data-operation="ln">ln</button>
+      </div>
+    </div>
+    <script>
+      (function() {
+        const input = document.querySelector(".calc-input");
+        const resultField = document.querySelector(".result");
+        const calc = document.querySelector(".calc");
+
+        function calculate(e) {
+          const operation = e.target.dataset.operation;
+          const number = input.valueAsNumber;
+          let result;
+          if (!operation) return;
+
+          switch (operation) {
+            case "sqr":
+              result = Math.pow(number, 2);
+              break;
+            case "sqrt":
+              result = Math.sqrt(number);
+              break;
+            case "ln":
+              result = Math.log(number);
+              break;
+            default:
+              result = "NaN";
+              break;
+          }
+
+          resultField.textContent = `The result is: ${result}`;
+        }
+
+        calc.addEventListener("click", calculate);
+      })();
+    </script>
+  </body>
+</html>
